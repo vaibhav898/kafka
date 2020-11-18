@@ -1,0 +1,9 @@
+retrieved := consumer.Poll(0)
+switch message := retrieved.(type) {
+case *kafka.Message:
+    fmt.Printf(string(message.value()))
+case kafka.Error:
+    fmt.Printf("%% Error: %v\n", message)
+default:
+    fmt.Printf("Ignored %v\n", message)
+}
